@@ -1,0 +1,24 @@
+{
+  "editor.tabSize": 2,
+  "editor.cursorBlinking": "expand",
+  "editor.cursorWidth": 2,
+  "editor.cursorSurroundingLinesStyle": "all",
+  "editor.tabCompletion": "on",
+  "editor.smoothScrolling": true,
+  "editor.renderLineHighlight": "none",
+  "editor.suggest.shareSuggestSelections": true,
+  "workbench.tree.indent": 10,
+  "editor.wordWrap": "on",
+	"bracketPairColorizer.showBracketsInGutter": true,
+	"editor.insertSpaces": false,
+	"editor.detectIndentation": false,
+	"bracketPairColorizer.showHorizontalScopeLine": false,
+	"cSpell.ignoreWords": [
+		"entreprise",
+		"entreprises"
+	],
+	"cSpell.words": [
+		"entreprise",
+		"entreprises"
+	]
+}
