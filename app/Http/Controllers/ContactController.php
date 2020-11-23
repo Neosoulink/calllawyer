@@ -4,68 +4,63 @@ namespace App\Http\Controllers;
 
 use App\Mail\ContactMail;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\DB;
+use App\Contact;
 
 class ContactController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        return view('contact.create');
-    }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        $data = $request->validate([
-            'name' => 'required|min:3',
-            'email' => 'required|email',
-            'message' => 'required',
-        ]);
-        Mail::to('test@test.com')->send(new ContactMail($data));
-        return back()->with('msg', 'Votre message à été envoyé avec succès !');
-    }
+	public function home()
+	{
+		$users = DB::table('contacts')->get();
+		return view('contact.home', ['contacts' => $users]);
+	}
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
+	public function create()
+	{
+		return view('contact.create');
+	}
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+	public function store(Request $request)
+	{
+		$data = $request->validate([
+			'nom' => 'required|string|min:3',
+			'prenom' => 'required|string|string|min:3',
+			'postnom' => 'required|string|string|min:3',
+			'email' => 'required|email',
+			'numero' => 'required|string',
+			'societe' => 'required|string',
+			'date_naissance' => 'required|date',
+		]);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
-    }
+		return Contact::create($data);;
+	}
+
+	public function list()
+	{
+		return Contact::get();
+	}
+
+	public function update(Request $request, Contact $contact)
+	{
+		$data = $request->validate([
+			'nom' => 'required|string|min:3',
+			'prenom' => 'required|string|string|min:3',
+			'postnom' => 'required|string|string|min:3',
+			'email' => 'required|email',
+			'numero' => 'required|regex:/^(\+243)[0-9]{9}$/g',
+			'societe' => 'required|string',
+			'date_naissance' => 'required|date',
+		]);
+
+		return $contact->update($data);
+	}
+
+	public function destroy(Contact $contact)
+	{
+		$contact->delete();
+		return response(null, Response::HTTP_OK);
+	}
 }

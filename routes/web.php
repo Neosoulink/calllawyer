@@ -14,15 +14,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::view('/','welcome');
-Route::view('a-propos', 'a-propos')->middleware('test');
-
-
-// Clients
-Route::resource('clients', 'ClientController');
 
 // Contacts
-Route::get('contactez-nous', 'ContactController@create')->name('contact.create');
-Route::post('contactez-nous', 'ContactController@store')->name('contact.store');
+Route::get('contacts', 'ContactController@home')->name('contact.home');
 
 Auth::routes();
 
