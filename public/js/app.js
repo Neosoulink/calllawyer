@@ -2221,6 +2221,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "contact-home",
@@ -39280,7 +39281,11 @@ var render = function() {
                       _vm.$set(_vm.form, "numero", $event.target.value)
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c("small", { staticClass: "text-primary" }, [
+                  _vm._v("Format congolais uniquement!")
+                ])
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-3 mb-3" }, [

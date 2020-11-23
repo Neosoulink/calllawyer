@@ -50,7 +50,7 @@ class ContactController extends Controller
 			'prenom' => 'required|string|string|min:3',
 			'postnom' => 'required|string|string|min:3',
 			'email' => 'required|email',
-			'numero' => 'required|regex:/^(\+243)[0-9]{9}$/g',
+			'numero' => 'regex:/^(\+243)[0-9]{9}$/ig',
 			'societe' => 'required|string',
 			'date_naissance' => 'required|date',
 		]);

@@ -261,6 +261,7 @@
 							v-model="form.numero"
 							required
 						/>
+						<small class="text-primary">Format congolais uniquement!</small>
 					</div>
 					<div class="col-md-3 mb-3">
 						<label for="validationDefault05">Societe</label>
